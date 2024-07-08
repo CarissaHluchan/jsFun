@@ -75,13 +75,13 @@ describe("PROTOTYPES", () => {
       }])
     })
     describe('kittyPrompts refactor', () => {
-      it.skip('should be able to handle orange puppers', () => {
+      it('should be able to handle orange puppers', () => {
         const e = kittyPrompts.orangePetNames(puppers);
 
         expect(e).to.deep.equal(["Hatchet", "Butter"])
       })
 
-      it.skip('should sort pups too', () => {
+      it('should sort pups too', () => {
         const e = kittyPrompts.sortByAge(puppers);
 
         expect(e).to.deep.equal([{
@@ -103,7 +103,7 @@ describe("PROTOTYPES", () => {
         }])
       })
 
-      it.skip('should age puppers too', () => {
+      it('should age puppers too', () => {
         const e = kittyPrompts.growUp(puppers);
 
         expect(e).to.deep.equal([{
@@ -147,7 +147,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Mod Prompts", () => {
-    it.skip("studentsPerMod", () => {
+    it("studentsPerMod", () => {
       const e = modPrompts.studentsPerMod();
 
       expect(e).to.deep.equal([{
@@ -444,13 +444,13 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Brewery Prompts", () => {
-    it.skip("getBeerCount", () => {
+    it("getBeerCount", () => {
       const e = breweryPrompts.getBeerCount();
 
       expect(e).to.deep.equal(40)
     });
 
-    it.skip("getBreweryBeerCount", () => {
+    it("getBreweryBeerCount", () => {
       const e = breweryPrompts.getBreweryBeerCount();
 
       expect(e).to.deep.equal([{
@@ -471,7 +471,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getSingleBreweryBeerCount", () => {
+    it("getSingleBreweryBeerCount", () => {
       const ratioCount = breweryPrompts.getSingleBreweryBeerCount('Ratio Beerworks');
       const plattCount = breweryPrompts.getSingleBreweryBeerCount('Platt Park Brewing Co.');
 
@@ -479,7 +479,7 @@ describe("PROTOTYPES", () => {
       expect(plattCount).to.equal(7);
     });
 
-    it.skip("findHighestAbvBeer", () => {
+    it("findHighestAbvBeer", () => {
       const e = breweryPrompts.findHighestAbvBeer();
 
       expect(e).to.deep.equal({
