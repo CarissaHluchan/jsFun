@@ -453,9 +453,19 @@ const weatherPrompts = {
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
     /* CODE GOES HERE */
+    const averageTemp = weather.map((location) => {
+      return (location.temperature.high + location.temperature.low)/2;
+    });
+    // console.log(averageTemp)
+    return averageTemp
 
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // return a new array containing the average 
+    // temperature for all locations maybe .map()
+    // math: (47+33)/2
+      // (location.temperature.high + location.temperature.low)/2
   },
 
   findSunnySpots() {
@@ -466,9 +476,23 @@ const weatherPrompts = {
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
     /* CODE GOES HERE */
-
+    const sunnyLocations = weather.filter((location) => {
+      return location.type.includes('sunny'); 
+    });
+    // console.log(sunnyLocations)
+    const sunnySentences = sunnyLocations.map((location) => {
+      return `${location.location} is ${location.type}.`;
+    })
+    // console.log(sunnySentences)
+    return sunnySentences;
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // find sunny and mostly sunny locations maybe .filter() then .map()
+      // callback return a new array of elements that 
+      // pass the conditional defined
+    // return a new array saying location is sunny
+      // `${weather.location} is ${weather.type}.`
   },
 
   findHighestHumidity() {
@@ -481,9 +505,19 @@ const weatherPrompts = {
     // }
 
     /* CODE GOES HERE */
+    const humidities = weather.sort((a, b) => {
+     return b.humidity - a.humidity;
+    })
+    return humidities[0];
+    // const humidities = weather.map((location) => ({
+    //   humitity: location.humidity,
+    // }))
+    // console.log(humidities)
 
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // use .sort() to find highest humidity
 
   }
 };
