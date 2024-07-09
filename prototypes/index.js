@@ -351,9 +351,17 @@ const classPrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    const feOnly = classrooms.filter((classroom) => {
+      return classroom.program === 'FE';
+    })
+    return feOnly;
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // iterate over classrooms.program that is FE
+    // put them in a new array 
+    // use .filter()
+
   },
 
   totalCapacities() {
@@ -366,17 +374,72 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    const totalCapacity = classrooms.reduce((acc, classroom) => {
+      if (classroom.program === 'FE') {
+        acc.feCapacity += classroom.capacity
+      } else if (classroom.program === 'BE') {
+        acc.beCapacity += classroom.capacity
+      }
+      return acc
+    }, {feCapacity: 0, beCapacity: 0})
+    return totalCapacity
+
+    // const beOnly = classrooms.filter((classroom) => {
+    //   return classroom.program === 'BE';
+    // });
+
+    // const totalBECapacity = beOnly.reduce((acc, classroom) => {
+    //   acc += classroom.capacity
+    //   return acc;
+    // }, 0);
+
+    // const feOnly = classrooms.filter((classroom) => {
+    //   return classroom.program === 'FE';
+    // });
+
+    // const totalFECapacity = feOnly.reduce((acc, classroom) => {
+    //   acc += classroom.capacity
+    //   return acc;
+    // }, 0);
+
+    // const totalCapacity = {
+    //   feCapacity: totalFECapacity,
+    //   beCapacity: totalBECapacity
+    // }
+    // return totalCapacity
+
+
+    // const capacityTotal = classrooms.reduce((acc, classroom) => {
+    //   if (classroom.program === 'FE') {
+    //     return acc += classroom.capacity
+    //   }
+    //   if (classroom.program === 'BE') {
+    //     return acc += classroom.capacity
+    //   }
+    //   return acc
+    // }, {})
+    // return capacityTotal
+
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // iterate over all FE and all BE add the total capacity 
+    // using a counter maybe .reduce() to a new object 
+
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
     /* CODE GOES HERE */
-
+    const byCapacity = classrooms.sort((a, b) => {
+      return a.capacity - b.capacity
+    })
+    return byCapacity
     // Annotation:
     // Write your annotation here as a comment
+    //psudeocode:
+    // take classroom use .sort() decending order a-b?
   }
 };
 
