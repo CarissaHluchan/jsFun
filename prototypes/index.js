@@ -604,13 +604,29 @@ const nationalParksPrompts = {
     //}
 
     /* CODE GOES HERE */
+    const parks = nationalParks.reduce((acc, park) => {
+      if (park.visited) {
+        acc.parksVisited.push(park.name)
+      } else {
+        acc.parksToVisit.push(park.name)
+      }
+      return acc;
+    }, {parksToVisit: [], parksVisited: []})
+  //  console.log(parks)
+    return parks
 
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // want to use .reduce()
+    // use a conditional
+    // how to access this boolean property if (visted === true) {}
+    // code challenge: solve with forEach
   },
 
   getParkInEachState() {
-    // Return an array of objects where the key is the state and the value is its National Park
+    // Return an array of objects where the key is the state 
+    // and the value is its National Park
     // eg: [ { Colorado: 'Rocky Mountain' },
     // { Wyoming: 'Yellowstone' },
     // { Montana: 'Glacier' },
@@ -620,9 +636,15 @@ const nationalParksPrompts = {
 
 
     /* CODE GOES HERE */
-
+    const parkInEachState = nationalParks.map((park) => ({
+      [park.location]: park.name 
+    }))
+    return parkInEachState
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // iterate through each park
+    // map? the location and name of park to a new array of objects
   },
 
   getParkActivities() {
@@ -642,9 +664,23 @@ const nationalParksPrompts = {
     //   'rock climbing' ]
 
     /* CODE GOES HERE */
+    const parkActivities = nationalParks.reduce((acc, park) => {
+     park.activities.forEach((activity) => {
+      if (!acc.includes(activity)) {
+        acc.push(activity)
+      }
+     })
+      return acc;
+    }, [])
+    return parkActivities
 
     // Annotation:
     // Write your annotation here as a comment
+    // pusedocode:
+    // iterate over all activities
+    // put activies into a new array
+    // do not put activity into the array if it is already there
+    // maybe use .reduce()?
   }
 };
 
