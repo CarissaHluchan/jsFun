@@ -252,9 +252,19 @@ const cakePrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    const cakeStock = cakes.map((cake) => ({
+      flavor: cake.cakeFlavor,
+      inStock: cake.inStock,
+    }))
+    // console.log(cakeStock)
+    return cakeStock
     // Annotation:
     // Write your annotation here as a comment
+   // pseudocode:
+   // return array that is the same legth with less key value pairs
+   // .map() ?
+   // iterate over cakes
+   // return cakeFalavor and inStok
   },
 
   onlyInStock() {
@@ -280,8 +290,19 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    const inStockCakes = cakes.filter((cake) => {
+      if (cake.inStock > 0) {
+        return cake
+      }
+    })
+    // console.log(inStockCakes)
+    return inStockCakes
     // Annotation:
     // Write your annotation here as a comment
+    // iterate over cakes
+    // find instock > 0
+    // return a new array
+    // maybe filter????
   },
 
   totalInventory() {
@@ -289,9 +310,18 @@ const cakePrompts = {
     // 59
 
     /* CODE GOES HERE */
-
+    const inventory = cakes.reduce((acc, cake) => {
+      acc += cake.inStock
+      return acc
+    }, 0)
+    // console.log(inventory)
+    return inventory
     // Annotation:
     // Write your annotation here as a comment
+    // iterate over each cake
+    // find instock add that number to tatal
+    // return the total
+    // .reduce() or .forEach
   },
 
   allToppings() {
@@ -300,9 +330,41 @@ const cakePrompts = {
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
     /* CODE GOES HERE */
+    const cakeToppings = cakes.reduce((acc, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!acc.includes(topping)) {
+            acc.push(topping)}
+    })
+      return acc
+    }, [])
+    console.log(cakeToppings)
+    return cakeToppings
+    // let allCakeToppings = [];
+    // const cakeToppings = cakes.forEach((cake) => {
+    //   if (!allCakeToppings.includes(cake.toppings))
+    // })
+
+    // const toppings = cakes.filter((cake) => {
+    //   let cakeToppings = [];
+    //   if (!cakeToppings.includes(cake.toppings)) {
+    //     cakeToppings.push(cake.toppings)
+    //   }
+    //   return cakeToppings
+    // })
+    // console.log(toppings)
+    // return toppings
 
     // Annotation:
     // Write your annotation here as a comment
+
+    // iterate over cakes
+    // look at toppings 
+    // put all nonduplicate topping into a new array
+    // return the new array
+    // .fiter() with a conditional to look for duplicates
+    //   if (!acc.includes(activity)) {
+    //   acc.push(activity)
+    // }
   },
 
   groceryList() {
@@ -900,8 +962,23 @@ const boardGamePrompts = {
 
     /* CODE GOES HERE */
 
+    //  const gameType = boardGames[type];
+    // console.log(gameType)
+
+    const averageRating = boardGames[type].reduce((acc, game) => {
+      (acc += game.rating) 
+      return acc
+    }, 0)
+    return averageRating / boardGames[type].length
     // Annotation:
     // Write your annotation here as a comment
+    //pseudocode:
+    // what is being refered to as the score? maybe rating??
+    // iterate over the game rattings
+    // add the rattings (use acc?)
+    // divide by the length
+    // return a number
+    // maybe reduce
   },
 
   averageScoreByTypeAndPlayers(type, maximumPlayers) {
@@ -911,9 +988,39 @@ const boardGamePrompts = {
     // note: do not worry about rounding your result.
 
     /* CODE GOES HERE */
+    //  const gameType = boardGames[type];
+    // console.log(gameType)
+    // const maxPalyerNum = boardGames[type].maxPlayers;
+    // console.log('max players: ', maxPalyerNum)
+    // console.log(maximumPlayers)
+
+    const gameByMaxPlayers = boardGames[type].filter((game) => {
+      if (game.maxPlayers === maximumPlayers) {
+        return game
+      }
+    })
+   const totalRating = gameByMaxPlayers.reduce((acc, game) => {
+      acc += game.rating
+      return acc
+    }, 0)
+    return totalRating / gameByMaxPlayers.length
+
+    // console.log(gameByMaxPlayers)
+    // const averageRating = boardGames[type].reduce((acc, gameByMaxPlayers) => {
+    //   acc += gameByMaxPlayers.rating
+    //   return acc
+    // }, 0)
+    // return averageRating / gameByMaxPlayers.length
 
     // Annotation:
     // Write your annotation here as a comment
+    //pseudocode:
+    // iterate over the games 
+    // find all the games with maxplayers at (2, 4, 8) = maximumPlayers
+    // add them up 
+    // return the average (/length)
+    //maybe .filter then .reduce 
+    //can I do this with .forEach???
   }
 };
 
