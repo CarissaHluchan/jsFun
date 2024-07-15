@@ -101,16 +101,16 @@ const kittyPrompts = {
     })
 
     return sortedPets
-    /*pusedocode:
-    - sort the cat by age: we need to iterate, look at each kitty's age
-    - return an array equal in length just in a different order (map?)
-        - still need to return an array -> maybe map
-    - array will be sorted form highest age to lowest
-    - use .sort() method -> how does that work?
-    - ex function compareNumber(a, b) {
-         return (a-b)}
+    //pseudocode:
+    // - sort the cat by age: we need to iterate, look at each kitty's age
+    // - return an array equal in length just in a different order (map?)
+    //     - still need to return an array -> maybe map
+    // - array will be sorted form highest age to lowest
+    // - use .sort() method -> how does that work?
+    // - ex function compareNumber(a, b) {
+    //      return (a-b)}
     
-    */
+    // */
 
     // Annotation:
     // Write your annotation here as a comment
@@ -130,7 +130,7 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    /*pusedocode:
+    /*pseudocode:
     - iterate through kitties by age -> maybe forEach or map
     - increase age by one
     - ruturn the array with increase age
@@ -357,7 +357,7 @@ const classPrompts = {
     return feOnly;
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // iterate over classrooms.program that is FE
     // put them in a new array 
     // use .filter()
@@ -374,15 +374,29 @@ const classPrompts = {
 
     /* CODE GOES HERE */
 
+    // const totalCapacity = classrooms.reduce((acc, classroom) => {
+    //   if (classroom.program === 'FE') {
+    //     acc.feCapacity += classroom.capacity
+    //   } else if (classroom.program === 'BE') {
+    //     acc.beCapacity += classroom.capacity
+    //   }
+    //   return acc
+    // }, {feCapacity: 0, beCapacity: 0})
+    // return totalCapacity
+
+    // or
+
     const totalCapacity = classrooms.reduce((acc, classroom) => {
-      if (classroom.program === 'FE') {
-        acc.feCapacity += classroom.capacity
-      } else if (classroom.program === 'BE') {
-        acc.beCapacity += classroom.capacity
-      }
+      if(!acc.feCapacity) acc.feCapacity = 0
+      if(classroom.program === 'FE') acc.feCapacity += classroom.capacity
+      
+      if(!acc.beCapacity) acc.beCapacity = 0;
+      if(classroom.program === 'BE') acc.beCapacity += classroom.capacity
+
       return acc
-    }, {feCapacity: 0, beCapacity: 0})
+    }, {})
     return totalCapacity
+
 
     // const beOnly = classrooms.filter((classroom) => {
     //   return classroom.program === 'BE';
@@ -422,7 +436,7 @@ const classPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // iterate over all FE and all BE add the total capacity 
     // using a counter maybe .reduce() to a new object 
 
@@ -524,7 +538,7 @@ const weatherPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // return a new array containing the average 
     // temperature for all locations maybe .map()
     // math: (47+33)/2
@@ -550,7 +564,7 @@ const weatherPrompts = {
     return sunnySentences;
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // find sunny and mostly sunny locations maybe .filter() then .map()
       // callback return a new array of elements that 
       // pass the conditional defined
@@ -579,7 +593,7 @@ const weatherPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // use .sort() to find highest humidity
 
   }
@@ -617,7 +631,7 @@ const nationalParksPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // want to use .reduce()
     // use a conditional
     // how to access this boolean property if (visted === true) {}
@@ -642,7 +656,7 @@ const nationalParksPrompts = {
     return parkInEachState
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // iterate through each park
     // map? the location and name of park to a new array of objects
   },
@@ -676,7 +690,7 @@ const nationalParksPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-    // pusedocode:
+    // pseudocode:
     // iterate over all activities
     // put activies into a new array
     // do not put activity into the array if it is already there
@@ -809,9 +823,22 @@ const boardGamePrompts = {
     // ["Chess", "Catan", "Checkers", "Pandemic", "Battle Ship", "Azul", "Ticket to Ride"]
 
     /* CODE GOES HERE */
-
+    // console.log(boardGames[type])
+    const boardGameType = boardGames[type]
+    const boardGameNames = boardGameType.map(game => {
+      return game.name
+    })
+    // console.log(boardGameNames)
+    return boardGameNames
     // Annotation:
     // Write your annotation here as a comment
+    // pseudocode:
+    // function takes in an argument 'type': the strings strategy childrens party
+    // how do I access the value in an object?
+      // . or bracet notation
+    // iterate over the boardGames names inside the array inside the object
+    // put into 3 sepearte arrays maybe .map()
+    // maybe object.keys() or .values()
   },
 
   listGamesAlphabetically(type) {
@@ -821,10 +848,28 @@ const boardGamePrompts = {
     // ["Candy Land", "Connect Four", "Operation", "Trouble"]
 
     /* CODE GOES HERE */
-
+    const gameBoardTypes = boardGames[type]
+    const boardGameNames = gameBoardTypes.map(game => {
+      return game.name
+    })
+   const sortName = boardGameNames.sort()
+   return sortName
     // Annotation:
     // Write your annotation here as a comment
+
+    // pusedocode:
+    // access the value of the object
+    // .map to new array
+    // then .sort
+    // *** SORT NOTE: cannot use (a, b) if using the default setting!!!!!
+      // o memorize this, remember that (a, b) => a - b 
+      // sorts numbers in ascending order.
+      // If omitted, the array elements are converted to strings, 
+      // then sorted according to each character's Unicode 
+      // code point value.
+      // ****
   },
+
 
   findHighestRatedGamesByType(type) {
     // Return an object which is the highest rated game within the specified type.
@@ -832,9 +877,20 @@ const boardGamePrompts = {
     // { name: 'Codenames', rating: 7.4, maxPlayers: 8 },
 
     /* CODE GOES HERE */
+    // const gameType = boardGames[type];
+    // console.log(gameType)
+
+    const highestRatedGame = boardGames[type].sort((a, b) => {
+      return b.rating - a.rating
+    })
+    return highestRatedGame[0];
 
     // Annotation:
     // Write your annotation here as a comment
+    // pseudocode:
+    // maybe use .find() or reduce?
+    // sort array by ratting
+    // return array at 0
   },
 
   averageScoreByType(type) {
