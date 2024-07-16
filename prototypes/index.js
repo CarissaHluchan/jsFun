@@ -260,7 +260,7 @@ const cakePrompts = {
     return cakeStock
     // Annotation:
     // Write your annotation here as a comment
-   // pseudocode:
+    // pesudocode:
    // return array that is the same legth with less key value pairs
    // .map() ?
    // iterate over cakes
@@ -298,6 +298,7 @@ const cakePrompts = {
     // console.log(inStockCakes)
     return inStockCakes
     // Annotation:
+     // pesudocode:
     // Write your annotation here as a comment
     // iterate over cakes
     // find instock > 0
@@ -317,6 +318,7 @@ const cakePrompts = {
     // console.log(inventory)
     return inventory
     // Annotation:
+     // pesudocode:
     // Write your annotation here as a comment
     // iterate over each cake
     // find instock add that number to tatal
@@ -337,7 +339,7 @@ const cakePrompts = {
     })
       return acc
     }, [])
-    console.log(cakeToppings)
+    // console.log(cakeToppings)
     return cakeToppings
     // let allCakeToppings = [];
     // const cakeToppings = cakes.forEach((cake) => {
@@ -356,7 +358,7 @@ const cakePrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-
+ // pesudocode:
     // iterate over cakes
     // look at toppings 
     // put all nonduplicate topping into a new array
@@ -380,8 +382,50 @@ const cakePrompts = {
 
     /* CODE GOES HERE */
 
+    let toppingObj = {};
+    cakes.forEach((cake) => {
+      cake.toppings.forEach((topping) => {
+        if (!toppingObj[topping]) {
+          toppingObj[topping] = 0;
+        }
+        toppingObj[topping] += 1;
+      })
+    })
+    return toppingObj;
+
+
+    // const allToppings = cakes.reduce((list, cake) => {
+    //   cake.toppings.forEach(topping =>
+    //     list.push(topping)
+    //   )
+    //   return list
+    // }, [])
+    // // console.log(allToppings)
+    // // return allToppings
+    // const counts = {}
+    // const countDuplicates = allToppings.forEach((topping) => {
+    //   if (!counts[topping]) {
+    //     counts[topping] = 1
+    //   } else {
+    //     counts[topping]++
+    //   }
+    //   console.log(counts)
+    //   // return counts
+    // })
+    // // console.log(countDuplicates)
+    // return countDuplicates
+
+
+
     // Annotation:
     // Write your annotation here as a comment
+         // pesudocode:
+    // iterate over cakes 
+    // look at toppings 
+    // filter() to new array --- .forEach()
+    // count how many times each topping appears
+    // return an object with the topping as the key and the times appeared as the value
+    // .reduce() to a new object ---- another .forEach
   }
 };
 
