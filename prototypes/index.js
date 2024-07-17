@@ -187,7 +187,7 @@ const clubPrompts = {
       // console.log(acc)
       return obj;
     }, {})
-    console.log(membersToClubs)
+    // console.log(membersToClubs)
     return membersToClubs
     // Annotation:
     // Write your annotation here as a comment
@@ -589,7 +589,7 @@ const classPrompts = {
 // DATASET: books from './datasets/books
 
 const bookPrompts = {
-  removeViolence() {
+  removeViolence(books) {
     // Your function should access the books data through a parameter (it is being passed as an argument in the test file)
     // return an array of all book titles that are not horror or true crime. Eg:
 
@@ -601,12 +601,27 @@ const bookPrompts = {
 
 
     /* CODE GOES HERE */
-
+    const removeViolenceAndTrueCrime = books.filter((book) => {
+      // console.log(book.genre !== 'Horror' && book.genre !== 'True Crime')
+      return (book.genre !== 'Horror' && book.genre !== 'True Crime') 
+    })
+    // console.log(removeViolenceAndTrueCrime)
+    return removeViolenceAndTrueCrime.map((book) => {
+      return book.title
+    })
+  
     // Annotation:
     // Write your annotation here as a comment
+    // pseudocode:
+    // iterate over books 
+    // if genre is horrior or true crime skip
+    // if not horrior put title into a new array return the array
+    // maybe .filter() returns true or false(this will remove it from the array)
+    // then map the title to a new array
 
   },
-  getNewBooks() {
+
+  getNewBooks(books) {
     // return an array of objects containing all books that were
     // published in the 90's and 00's. Inlucde the title and the year Eg:
 
@@ -615,9 +630,22 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
-
+    const newBooks = books.filter((book) => { 
+      return book.published >= 1990 && book.published <= 2009
+    })
+    const newBooksTitleAndYear = newBooks.map((book) => {
+    return {title: book.title, year: book.published}
+    })
+    return newBooksTitleAndYear
     // Annotation:
     // Write your annotation here as a comment
+
+    // pseudocode:
+    // .reduce() or .filter then map
+    // iterate over books 
+    // find all the books that are from 1990 - 2009
+    // book.published >= 1990 && book.published <= 2009
+    // return a new array with the book title and year
   },
 
   getBooksByYear(books, year) {
@@ -632,8 +660,21 @@ const bookPrompts = {
 
     /* CODE GOES HERE */
 
+    const booksByYear = books.filter((book) => {
+      return book.published > year
+    })
+    // console.log(booksByYear)
+    const booksGivenBack = booksByYear.map((book) => {
+      return {title: book.title, year: book.published}
+    })
+    // console.log(booksGivenBack)
+    return booksGivenBack
     // Annotation:
     // Write your annotation here as a comment
+
+    // pseudocode:
+    // iterate over books to find all book by after a given year (.filter)
+    // return a new array containting only title and published (.map)
   }
 
 };
@@ -1265,6 +1306,7 @@ const astronomyPrompts = {
     // ]
 
     /* CODE GOES HERE */
+    // console.log(Object.keys(constellations)) // [ 'orion', 'ursaMajor', 'ursaMinor' ]
 
     // Annotation:
     // Write your annotation here as a comment
